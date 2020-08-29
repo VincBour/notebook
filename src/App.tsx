@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container } from '@material-ui/core';
+import { Form } from './components/form/Form';
+import { Home } from './components/home/Home';
+import { Route, Switch } from 'react-router';
+import { Notes } from './components/notes/Notes';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="lg" style={{ height: '100vh', padding:'8px'}}>
+      <Switch>
+        <Route exact path='/'><Home /></Route>
+        <Route exact path="/new-note"><Form /></Route>
+        <Route exact path='/note'><Notes /></Route>
+        {/* <Route exact path='/note/:id' children={(props: RouteComponentProps) => {
+          const id = props.location.pathname.replace('/note/','');
+        return (<Note id={id}/>)}} /> */}
+      </Switch>
+    </Container>
   );
 }
 

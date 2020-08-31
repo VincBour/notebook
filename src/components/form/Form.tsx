@@ -59,15 +59,15 @@ export const Form: React.FC = () => {
             variant="outlined"
             defaultValue="Title"
           />
-          <TextField label="Notes" multiline variant="outlined" />
-          <Select data={categories} label="Category" />
-          <Select data={subCategories} label="Sub-Category" />
           <TextField
             label="Date"
             type="date"
             className={classes.textField}
             defaultValue="2020-01-15"
           />
+          <Select data={categories} label="Category" />
+          <Select data={subCategories} label="Sub-Category" />
+          <TextField label="Notes" multiline variant="outlined" style={{width:'26rem'}}/>
           <Button variant='outlined' style={{margin:'8px'}}>Create</Button>
           <ReturnHome />
         </Paper>

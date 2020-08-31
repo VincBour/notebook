@@ -12,9 +12,10 @@ import {
 } from "@material-ui/core";
 import ReturnHome from "../buttons/ReturnHome";
 import { ICategory } from "../form/Select";
-import data from "../../datas/data.json";
-import { Note } from '../Note/Note';
+import { Note } from '../note/Note';
 import Search from "../search/Search";
+import { INoteBookState } from "../../store/configureStore";
+import { connect } from "react-redux";
 export interface INote {
   id: number;
   title: string;
@@ -24,7 +25,11 @@ export interface INote {
   note: string;
 }
 
-export const Notes = () => {
+export interface INotesState {
+  notes?: INote[];
+}
+
+export const Notes: React.FC<INotesState> = ({notes}) => {
 
   const [state, setState] = React.useState<INote | undefined>(undefined);
 
@@ -43,7 +48,7 @@ export const Notes = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.data.map((row: INote) => (
+            {notes && notes.map((row: INote) => (
               <TableRow key={row.title}>
                 <TableCell component="th" scope="row">
                   {row.title}
@@ -64,3 +69,13 @@ export const Notes = () => {
     </Grid>
   );
 };
+
+const mapStateToProps = (state: INoteBookState): INotesState => {
+    return {
+      notes: state.interface.dataNote
+    };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notes);

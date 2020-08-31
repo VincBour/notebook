@@ -1,5 +1,4 @@
 import * as React from "react";
-import { INote } from "../notes/Notes";
 import {
   Grid,
   Card,
@@ -10,6 +9,7 @@ import {
   CardActions,
 } from "@material-ui/core";
 import { Save, Delete, Update } from "@material-ui/icons";
+import { INote } from "../notes/Notes";
 
 export const Note: React.FC<{ note: INote }> = ({ note }) => {
   const [state, setstate] = React.useState<string>(note.note);
